@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>성균 & 여경, 결혼합니다</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      @font-face {
+        font-family: 'MapoGoldenPier';
+        src: url('https://gcore.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoGoldenPierA.woff')
+          format('woff');
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        box-sizing: border-box;
+        text-align: center;
+      }
+
+      body {
+        width: 375px;
+        margin: 0 auto;
+        font-family: 'MapoGoldenPier';
+      }
+
+      h2 {
+        font-size: 22px;
+        font-weight: 300;
+        color: #312009;
+      }
+
+      h2 span {
+        font-size: 12px;
+        letter-spacing: 3px;
+        color: #736552;
+      }
+
+      .phrase {
+        padding: 60px 0;
+      }
+
+      .phrase p {
+        font-size: 16px;
+        font-weight: 300;
+        color: #463217;
+        margin: 25px 0;
+        white-space: pre-line;
+      }
+
+      .phrase p span {
+        font-size: 24px;
+        color: #312009;
+      }
+
+      .gallery {
+        background: #dee3d0;
+        padding: 30px 0;
+      }
+
+      .gallery .grid {
+        max-width: 350px;
+        margin: 25px auto;
+      }
+
+      .gallery .grid-item {
+        width: 48%;
+        margin-bottom: 10px;
+        cursor: pointer;
+      }
+
+      .gallery .grid-item img {
+        width: 100%;
+        display: block;
+      }
+
+      .swiper-container {
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 9999;
+      }
+
+      .swiper-container.active {
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .swiper-slide {
+        display: flex;
+        justify-content: center; /* 가로 중앙 */
+        align-items: center; /* 세로 중앙 */
+      }
+
+      .swiper-slide img {
+        width: 100%;
+        height: auto;
+        max-height: 90vh;
+        max-width: 100%;
+        object-fit: contain;
+        display: block;
+      }
+
+      .location {
+        padding: 30px 0;
+      }
+
+      .location .address {
+        padding-top: 20px;
+        font-size: 16px;
+        color: #463217;
+      }
+
+      .location ul {
+        width: 340px;
+        margin: 0 auto;
+        display: flex;
+        gap: 20px;
+      }
+
+      .location ul li {
+        background: #dee3d0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+        gap: 4px;
+        padding: 7px;
+        border-radius: 2px;
+        cursor: pointer;
+      }
+
+      .location ul li p {
+        font-size: 12px;
+      }
+
+      .contact {
+        background: #dee3d0;
+        padding: 30px 0;
+      }
+
+      .contact ul {
+        text-align: center;
+        width: 300px;
+        margin: 30px auto;
+        position: relative;
+        border-radius: 2px;
+        overflow: hidden;
+      }
+
+      .contact ul li:not(:first-child) {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background: #fff;
+        padding: 20px 30px;
+      }
+
+      .contact ul li:not(:first-child) p {
+        text-align: left;
+        font-size: 12px;
+        font-weight: 300;
+        color: #736552;
+      }
+
+      .contact ul li:not(:first-child) p span {
+        color: #222;
+      }
+
+      .contact ul li:not(:first-child) .phone {
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+      }
+
+      .contact ul li:nth-child(2)::after,
+      .contact ul li:nth-child(3)::after {
+        content: '';
+        display: block;
+        background: #d1dbbf;
+        width: 260px;
+        height: 0.5px;
+        position: absolute;
+        left: 20px;
+      }
+
+      .contact ul li:nth-child(2)::after {
+        top: 110px;
+      }
+
+      .contact ul li:nth-child(3)::after {
+        top: 180px;
+      }
+
+      .contact ul li:first-child {
+        background: #9daa79;
+        color: #fff;
+        padding: 10px;
+      }
+
+      .contact ul li:first-child p {
+        display: inline-block;
+      }
+
+      .copy-icon {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="invitation">
+      <section class="main">
+        <img src="images/main.jpg" alt="메인 사진" />
+      </section>
+
+      <section class="phrase">
+        <img src="images/deco01.png" alt="장식" />
+        <p id="typing-text-1">
+          찬 바람이 불기 시작하던 계절,<br />
+          저희 두 사람은 따뜻한 인연을 시작했습니다. <br />
+
+          이 사람과 함께라면 <br />
+          평범한 하루도 조금 더 빛나고, <br />
+          웃는 날은 더 많아질 것 같았습니다. <br />
+          이제는 같은 집, 같은 삶을 나누려 합니다. <br />
+          저희의 새로운 시작에 따뜻한 축복을 보내주세요.
+        </p>
+        <img src="images/deco02.png" alt="장식" />
+        <p id="typing-text-2" style="line-height: 1.2">
+          이규형 · 김도경의 장남&ensp; <span>이성균</span> <br />
+          방정수 · 김혜정의 차녀&ensp; <span>방여경</span>
+        </p>
+      </section>
+
+      <section class="gallery">
+        <h2>
+          <span>GALLERY</span> <br />
+          갤러리
+        </h2>
+        <ul class="grid">
+          <li class="grid-item">
+            <img src="images/photo01.jpg" alt="웨딩사진" />
+          </li>
+          <li class="grid-item">
+            <img src="images/photo02.jpg" alt="웨딩사진" />
+          </li>
+          <li class="grid-item">
+            <img src="images/photo04.jpg" alt="웨딩사진" />
+          </li>
+          <li class="grid-item">
+            <img src="images/photo03.jpg" alt="웨딩사진" />
+          </li>
+          <li class="grid-item">
+            <img src="images/photo05.jpg" alt="웨딩사진" />
+          </li>
+          <li class="grid-item" style="width: 100%">
+            <img src="images/photo06.jpg" alt="웨딩사진" />
+          </li>
+        </ul>
+
+        <!-- Swiper 슬라이드 영역 -->
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="images/photo01.jpg" alt="웨딩사진" />
+            </div>
+            <div class="swiper-slide">
+              <img src="images/photo02.jpg" alt="웨딩사진" />
+            </div>
+            <div class="swiper-slide">
+              <img src="images/photo04.jpg" alt="웨딩사진" />
+            </div>
+            <div class="swiper-slide">
+              <img src="images/photo03.jpg" alt="웨딩사진" />
+            </div>
+            <div class="swiper-slide">
+              <img src="images/photo05.jpg" alt="웨딩사진" />
+            </div>
+            <div class="swiper-slide">
+              <img src="images/photo06.jpg" alt="웨딩사진" />
+            </div>
+          </div>
+
+          <!-- 네비게이션 버튼 -->
+          <div class="swiper-button-next" style="color: #fff"></div>
+          <div class="swiper-button-prev" style="color: #fff"></div>
+          <!-- 닫기 버튼 -->
+          <button
+            class="swiper-close"
+            style="
+              position: absolute;
+              top: 20px;
+              right: 20px;
+              font-size: 24px;
+              color: #fff;
+              background: none;
+              border: none;
+              cursor: pointer;
+              z-index: 99;
+            "
+          >
+            ×
+          </button>
+        </div>
+      </section>
+
+      <section class="location">
+        <h2>
+          <span>LOCATION</span> <br />
+          오시는 길
+        </h2>
+        <p class="address">
+          부산 해운대구 센텀1로 25 센텀한샘빌딩 8층 <br />
+          그랜드블랑 미라벨가든홀
+        </p>
+
+        <div
+          id="map"
+          style="width: 340px; height: 245px; margin: 30px auto"
+        ></div>
+
+        <ul>
+          <li>
+            <img src="images/navermap.png" alt="네이버지도 아이콘" />
+            <p>네이버지도</p>
+          </li>
+          <li>
+            <img src="images/kakaomap.png" alt="카카오지도 아이콘" />
+            <p>카카오맵</p>
+          </li>
+          <li>
+            <img src="images/tmap.png" alt="티맵 아이콘" />
+            <p>티맵</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="contact">
+        <h2>
+          <span>CONTACT</span> <br />
+          마음 전하실 곳
+        </h2>
+        <ul>
+          <li><p>신랑 측</p></li>
+          <li>
+            <img class="copy-icon" src="images/copy.png" alt="복사 아이콘" />
+            <p>
+              <span>이성균</span> <br />
+              농협 356 0886 7072 13
+            </p>
+            <img
+              class="phone"
+              src="images/phone.png"
+              alt="연락처 아이콘"
+              data-phone="01051955468"
+            />
+          </li>
+          <li>
+            <img class="copy-icon" src="images/copy.png" alt="복사 아이콘" />
+            <p>
+              <span>이규형</span> <br />
+              하나 3349 1020 141407
+            </p>
+            <img
+              class="phone"
+              src="images/phone.png"
+              alt="연락처 아이콘"
+              data-phone="01035425468"
+            />
+          </li>
+          <li>
+            <img class="copy-icon" src="images/copy.png" alt="복사 아이콘" />
+            <p>
+              <span>김도경</span> <br />
+              국민 5621 0101 588132
+            </p>
+            <img
+              class="phone"
+              src="images/phone.png"
+              alt="연락처 아이콘"
+              data-phone="01053185468"
+            />
+          </li>
+        </ul>
+
+        <ul>
+          <li><p>신부 측</p></li>
+          <li>
+            <img class="copy-icon" src="images/copy.png" alt="복사 아이콘" />
+            <p>
+              <span>방여경</span> <br />
+              농협 3520388844463
+            </p>
+            <img
+              class="phone"
+              src="images/phone.png"
+              alt="연락처 아이콘"
+              data-phone="01051565360"
+            />
+          </li>
+          <li>
+            <img class="copy-icon" src="images/copy.png" alt="복사 아이콘" />
+            <p>
+              <span>방정수</span> <br />
+              경남 506220312187
+            </p>
+            <img
+              class="phone"
+              src="images/phone.png"
+              alt="연락처 아이콘"
+              data-phone="01052305360"
+            />
+          </li>
+          <li>
+            <img class="copy-icon" src="images/copy.png" alt="복사 아이콘" />
+            <p>
+              <span>김혜정</span> <br />
+              경남 506210307953
+            </p>
+            <img
+              class="phone"
+              src="images/phone.png"
+              alt="연락처 아이콘"
+              data-phone="01086382470"
+            />
+          </li>
+        </ul>
+      </section>
+    </div>
+
+    <script
+      type="text/javascript"
+      src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=a4dylda4na"
+    ></script>
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+    <script>
+      var mapDiv = document.getElementById('map');
+      var map = new naver.maps.Map(mapDiv);
+    </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var grid = document.querySelector('.grid');
+        var msnry = new Masonry(grid, {
+          itemSelector: '.grid-item',
+          columnWidth: '.grid-item',
+          percentPosition: true,
+          gutter: 10,
+        });
+      });
+
+      // 타이핑 효과
+      function typeWriter(element, html, speed, callback) {
+        let i = 0;
+        let tag = false;
+        let text = '';
+
+        function typing() {
+          if (i < html.length) {
+            let char = html[i];
+
+            if (char === '<') tag = true;
+            if (tag) {
+              text += char;
+            } else {
+              text += char;
+              element.innerHTML = text;
+            }
+            if (char === '>') {
+              tag = false;
+              element.innerHTML = text;
+            }
+
+            i++;
+            setTimeout(typing, speed);
+          } else if (callback) {
+            callback();
+          }
+        }
+        typing();
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        const textEl1 = document.getElementById('typing-text-1');
+        const textEl2 = document.getElementById('typing-text-2');
+
+        const text1 = textEl1.innerHTML;
+        const text2 = textEl2.innerHTML;
+
+        textEl1.innerHTML = '';
+        textEl2.innerHTML = '';
+        textEl2.style.display = 'none';
+
+        typeWriter(textEl1, text1, 30, function () {
+          textEl2.style.display = 'block';
+          typeWriter(textEl2, text2, 30);
+        });
+      });
+    </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const swiperContainer = document.querySelector('.swiper-container');
+        const swiper = new Swiper('.swiper-container', {
+          loop: true,
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+
+        const gridItems = document.querySelectorAll('.gallery .grid-item');
+
+        gridItems.forEach((item, index) => {
+          item.addEventListener('click', () => {
+            swiperContainer.classList.add('active');
+            swiper.slideToLoop(index, 0);
+          });
+        });
+
+        document
+          .querySelector('.swiper-close')
+          .addEventListener('click', () => {
+            swiperContainer.classList.remove('active');
+          });
+      });
+
+      // 복사 기능: 계좌번호 복사, 연락처 복사
+      document.querySelectorAll('li').forEach((li) => {
+        const copyIcon = li.querySelector('.copy-icon');
+        const phoneIcon = li.querySelector('.phone');
+
+        copyIcon?.addEventListener('click', () => {
+          const p = copyIcon.nextElementSibling;
+          if (!p) return;
+
+          const spanText = p.querySelector('span')?.textContent || '';
+          let text = p.textContent || '';
+          text = text.replace(spanText, '').trim();
+          text = text.replace(/\s+/g, ' ');
+
+          navigator.clipboard.writeText(text).then(() => {
+            alert('계좌번호가 복사되었습니다: ' + text);
+          });
+        });
+
+        phoneIcon?.addEventListener('click', () => {
+          const phoneText =
+            phoneIcon.getAttribute('data-phone') || '연락처 정보 없음';
+
+          navigator.clipboard.writeText(phoneText).then(() => {
+            alert('연락처가 복사되었습니다: ' + phoneText);
+          });
+        });
+      });
+
+      // 위치 ul li 클릭 시 각 지도 링크 열기
+      document.querySelectorAll('.location ul li').forEach((li, index) => {
+        const urls = [
+          'https://map.naver.com/v5/search/부산 해운대구 그랜드블랑',
+          'https://map.kakao.com/?q=부산 해운대구 그랜드블랑',
+          'tmap://search?name=그랜드블랑 미라벨가든홀&address=부산 해운대구 센텀1로 25',
+        ];
+
+        li.addEventListener('click', () => {
+          window.open(urls[index], '_blank');
+        });
+      });
+
+      // AOS 초기화
+      AOS.init({
+        duration: 1200,
+        once: true,
+      });
+    </script>
+  </body>
+</html>
