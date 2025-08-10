@@ -73,6 +73,25 @@
       .invitation {
         max-width: 600px;
         overflow-x: hidden !important;
+        position: relative;
+      }
+
+      #muteBtn {
+        border: none;
+        background: url(images/mute.png) no-repeat center / cover;
+        position: fixed;
+        bottom: 2%;
+        left: 2%;
+        width: 20px;
+        height: 20px;
+        z-index: 9;
+      }
+      .mute-btn {
+        opacity: 0.8;
+        transition: opacity 0.3s ease;
+      }
+      .mute-btn.muted {
+        opacity: 0.4; /* 음소거 시 연하게 */
       }
 
       [data-aos] {
@@ -342,6 +361,12 @@
   </head>
   <body>
     <div class="invitation">
+      <audio id="bgm" autoplay>
+        <source src="Love Story - Taylor Swift_edit.mp3" type="audio/mp3" />
+      </audio>
+
+      <button id="muteBtn" class="mute-btn"></button>
+
       <section class="hero">
         <img src="images/main.jpg" alt="메인 사진" loading="lazy" />
         <div class="name">
@@ -595,6 +620,17 @@
           once: true,
         });
       };
+
+      // 음소거
+      const bgm = document.getElementById('bgm');
+      const muteBtn = document.getElementById('muteBtn');
+
+      bgm.muted = false;
+
+      muteBtn.addEventListener('click', () => {
+        bgm.muted = !bgm.muted;
+        muteBtn.classList.toggle('muted', bgm.muted);
+      });
 
       // fadeIn 효과
       document.querySelectorAll('.fade').forEach((el) => {
