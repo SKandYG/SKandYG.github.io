@@ -713,16 +713,15 @@
       });
 
       // 지도 링크 열기
-      const urls = [
-        'https://map.naver.com/v5/search/부산 해운대구 그랜드블랑',
-        'https://map.kakao.com/?q=부산 해운대구 그랜드블랑',
-        'https://map.tmap.co.kr/search.do?q=' +
-          encodeURIComponent(
-            '그랜드블랑 미라벨가든홀 부산 해운대구 센텀1로 25'
-          ),
-      ];
-
       document.querySelectorAll('.location ul li').forEach((li, index) => {
+        const urls = [
+          'https://map.naver.com/v5/search/부산 해운대구 그랜드블랑',
+          'https://map.kakao.com/?q=부산 해운대구 그랜드블랑',
+          `tmap://search?query=${encodeURIComponent(
+            '그랜드블랑 미라벨가든홀 부산 해운대구 센텀1로 25'
+          )}`,
+        ];
+
         li.addEventListener('click', () => {
           window.open(urls[index], '_blank');
         });
