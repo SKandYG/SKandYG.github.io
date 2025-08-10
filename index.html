@@ -198,7 +198,7 @@
           .item {
             width: 100%;
             height: 50%;
-            border-radius: 10px;
+            border-radius: 5px;
             overflow: hidden;
 
             img {
@@ -214,14 +214,12 @@
 
           .item {
             width: 100px;
-            height: 150px;
             margin-right: 10px;
-            border-radius: 10px;
+            border-radius: 5px;
             overflow: hidden;
 
             img {
               width: 100px;
-              object-fit: cover;
             }
           }
 
@@ -404,43 +402,43 @@
           data-aos-delay="200"
         >
           <div class="item">
-            <img src="images/photo01.jpg" alt="웨딩사진" loading="lazy"/>
+            <img src="images/photo01.jpg" alt="웨딩사진" loading="lazy" />
           </div>
           <div class="item">
-            <img src="images/photo02.jpg" alt="웨딩사진" loading="lazy"/>
+            <img src="images/photo02.jpg" alt="웨딩사진" loading="lazy" />
           </div>
           <div class="item">
-            <img src="images/photo04.jpg" alt="웨딩사진" loading="lazy"/>
+            <img src="images/photo04.jpg" alt="웨딩사진" loading="lazy" />
           </div>
           <div class="item">
-            <img src="images/photo03.jpg" alt="웨딩사진" loading="lazy"/>
+            <img src="images/photo03.jpg" alt="웨딩사진" loading="lazy" />
           </div>
           <div class="item">
-            <img src="images/photo05.jpg" alt="웨딩사진" loading="lazy"/>
+            <img src="images/photo05.jpg" alt="웨딩사진" loading="lazy" />
           </div>
           <div class="item">
-            <img src="images/photo06.jpg" alt="웨딩사진" loading="lazy"/>
+            <img src="images/photo06.jpg" alt="웨딩사진" loading="lazy" />
           </div>
         </div>
 
         <div class="thumb">
           <div class="item">
-            <img src="images/photo01.jpg" alt="웨딩사진" loading="lazy"/>
+            <img src="images/photo01.jpg" alt="웨딩사진" loading="lazy" />
           </div>
           <div class="item">
-            <img src="images/photo02.jpg" alt="웨딩사진" loading="lazy"/>
+            <img src="images/photo02.jpg" alt="웨딩사진" loading="lazy" />
           </div>
           <div class="item">
-            <img src="images/photo04.jpg" alt="웨딩사진" loading="lazy"/>
+            <img src="images/photo04.jpg" alt="웨딩사진" loading="lazy" />
           </div>
           <div class="item">
-            <img src="images/photo03.jpg" alt="웨딩사진" loading="lazy"/>
+            <img src="images/photo03.jpg" alt="웨딩사진" loading="lazy" />
           </div>
           <div class="item">
-            <img src="images/photo05.jpg" alt="웨딩사진" loading="lazy"/>
+            <img src="images/photo05.jpg" alt="웨딩사진" loading="lazy" />
           </div>
           <div class="item">
-            <img src="images/photo06.jpg" alt="웨딩사진" loading="lazy"/>
+            <img src="images/photo06.jpg" alt="웨딩사진" loading="lazy" />
           </div>
         </div>
       </section>
@@ -467,7 +465,7 @@
           data-aos-duration="1000"
           data-aos-delay="300"
         >
-          <img src="images/map.jpg" alt="지도" loading="lazy"/>
+          <img src="images/map.jpg" alt="지도" loading="lazy" />
         </div>
 
         <ul
@@ -592,9 +590,11 @@
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 
     <script>
-      AOS.init({
-        once: true,
-      });
+      window.onload = function () {
+        AOS.init({
+          once: true,
+        });
+      };
 
       // fadeIn 효과
       document.querySelectorAll('.fade').forEach((el) => {
