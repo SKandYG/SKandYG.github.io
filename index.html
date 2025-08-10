@@ -26,6 +26,7 @@
       href="https://fonts.googleapis.com/css2?family=Water+Brush&display=swap"
       rel="stylesheet"
     />
+    <link rel="preload" as="image" href="images/main.webp" />
 
     <style>
       @font-face {
@@ -269,7 +270,6 @@
 
         .map {
           width: 100%;
-          border-radius: 10px;
 
           img {
             width: 100%;
@@ -288,7 +288,7 @@
             padding: 10px 5px;
             font-size: 13px;
             flex: 1;
-            border-radius: 2px;
+            border-radius: 5px;
             justify-content: center;
             align-items: center;
             gap: 10px;
@@ -350,10 +350,15 @@
             background: #9daa79;
             color: #fff;
             padding: 10px;
+            border-radius: 5px 5px 0 0;
 
             p {
               display: inline-block;
             }
+          }
+
+          li:last-child {
+            border-radius: 0 0 5px 5px;
           }
         }
       }
@@ -368,7 +373,7 @@
       <button id="muteBtn" class="mute-btn"></button>
 
       <section class="hero">
-        <img src="images/main.jpg" alt="메인 사진" loading="lazy" />
+        <img src="images/main.webp" alt="메인 사진" />
         <div class="name">
           <p>SUNGKYUN</p>
           <div class="line"></div>
@@ -427,43 +432,43 @@
           data-aos-delay="200"
         >
           <div class="item">
-            <img src="images/photo01.jpg" alt="웨딩사진" loading="lazy" />
+            <img src="images/photo01.webp" alt="웨딩사진" loading="lazy" />
           </div>
           <div class="item">
-            <img src="images/photo02.jpg" alt="웨딩사진" loading="lazy" />
+            <img src="images/photo02.webp" alt="웨딩사진" loading="lazy" />
           </div>
           <div class="item">
-            <img src="images/photo04.jpg" alt="웨딩사진" loading="lazy" />
+            <img src="images/photo04.webp" alt="웨딩사진" loading="lazy" />
           </div>
           <div class="item">
-            <img src="images/photo03.jpg" alt="웨딩사진" loading="lazy" />
+            <img src="images/photo03.webp" alt="웨딩사진" loading="lazy" />
           </div>
           <div class="item">
-            <img src="images/photo05.jpg" alt="웨딩사진" loading="lazy" />
+            <img src="images/photo05.webp" alt="웨딩사진" loading="lazy" />
           </div>
           <div class="item">
-            <img src="images/photo06.jpg" alt="웨딩사진" loading="lazy" />
+            <img src="images/photo06.webp" alt="웨딩사진" loading="lazy" />
           </div>
         </div>
 
         <div class="thumb">
           <div class="item">
-            <img src="images/photo01.jpg" alt="웨딩사진" loading="lazy" />
+            <img src="images/photo01.webp" alt="웨딩사진" loading="lazy" />
           </div>
           <div class="item">
-            <img src="images/photo02.jpg" alt="웨딩사진" loading="lazy" />
+            <img src="images/photo02.webp" alt="웨딩사진" loading="lazy" />
           </div>
           <div class="item">
-            <img src="images/photo04.jpg" alt="웨딩사진" loading="lazy" />
+            <img src="images/photo04.webp" alt="웨딩사진" loading="lazy" />
           </div>
           <div class="item">
-            <img src="images/photo03.jpg" alt="웨딩사진" loading="lazy" />
+            <img src="images/photo03.webp" alt="웨딩사진" loading="lazy" />
           </div>
           <div class="item">
-            <img src="images/photo05.jpg" alt="웨딩사진" loading="lazy" />
+            <img src="images/photo05.webp" alt="웨딩사진" loading="lazy" />
           </div>
           <div class="item">
-            <img src="images/photo06.jpg" alt="웨딩사진" loading="lazy" />
+            <img src="images/photo06.webp" alt="웨딩사진" loading="lazy" />
           </div>
         </div>
       </section>
@@ -490,7 +495,7 @@
           data-aos-duration="1000"
           data-aos-delay="300"
         >
-          <img src="images/map.jpg" alt="지도" loading="lazy" />
+          <img src="images/map.png" alt="지도" loading="lazy" />
         </div>
 
         <ul
@@ -615,11 +620,9 @@
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 
     <script>
-      window.onload = function () {
-        AOS.init({
-          once: true,
-        });
-      };
+      AOS.init({
+        once: true,
+      });
 
       // 음소거
       const bgm = document.getElementById('bgm');
